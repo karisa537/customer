@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST}/${DB_NAME}?useSSL=false
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    hikari:
+      initialization-fail-timeout: 0
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  t24:
+    client-password: QWERTYui123*
+    base-resource: /T24KCBAccountOpening/services?wsdl
+    client-username: KE0010001
+    service-name: T24WebServicesImplService
+    base-url: https://10.216.1.46:8443/
+  twilio:
+    account_sid: ACdc13afda54cf19913d204289712fbbc2
+    auth_token: 0af238b0e5e1df82a442b0b725e58f38
+    trial_number: '+19206206950'
