@@ -43,27 +43,26 @@ steps:
      containerRegistry: 'dockerRegistry'
  - task: Docker@2
    inputs:
-     command: buildAndPush
+     command: build
      repository: jkalume/kari-git-images
      #Dockerfile: 'Dockerfile'
      tags: $(image_tag)
 
-#  - task: Bash@3
-#    displayName: List existing images
-#    inputs:
-#      targetType: inline
-#      script: |
-#       docker image ls
-#  - task: Bash@3
-#    inputs:
-#      targetType: inline
-#      script: |
-#       docker tag $(image_tag) jkalume/kari-git-images:$(image_tag)
-#       docker push jkalume/kari-git-images:$(image_tag)
+ - task: Bash@3
+   displayName: List existing images
+   inputs:
+     targetType: inline
+     script: |
+      docker image ls
+ - task: Bash@3
+   inputs:
+     targetType: inline
+     script: |
+      docker push jkalume/kari-git-images:$(image_tag)
  - task: Bash@3
    displayName: Removing un-used images
    inputs:
      targetType: inline
      script: |
-      docker image ls
       docker image prune
+       docker image ls
