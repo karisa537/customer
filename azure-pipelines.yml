@@ -24,3 +24,13 @@ steps:
      sqMavenPluginVersionChoice: 'latest'
      checkStyleRunAnalysis: true
      findBugsRunAnalysis: true
+
+ - task: CopyFiles@2
+   displayName: copying files form source directory
+   inputs:
+     contents: '**'
+     CleanTargetFolder: true
+     TargetFolder: $(build.artifactstagingdirectory)
+     OverWrite: true
+     retryCount: true
+     preserveTimestamp: true
