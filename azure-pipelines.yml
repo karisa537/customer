@@ -40,7 +40,10 @@ steps:
    displayName: maven build
    inputs:
      targetType: inline
-     script: mvn install
+     script: |
+      mvn install
+      docker build $(image_tag)
+      docker image ls
 #  - task: Docker@2
 #    displayName: Docker login
 #    inputs:
