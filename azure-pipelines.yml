@@ -40,7 +40,7 @@ steps:
    displayName: Docker Build
    inputs:
      command: login
-     containerRegistry: 'jkalume'
+     #containerRegistry: 'jkalume'
  - task: Docker@2
    inputs:
      command: build
