@@ -33,5 +33,6 @@ steps:
      CleanTargetFolder: true
      TargetFolder: $(build.artifactstagingdirectory)
      OverWrite: true
-     retryCount: true
+     retryCount: '5'
      preserveTimestamp: true
+     delayBetweenRetries: true
