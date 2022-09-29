@@ -29,6 +29,7 @@ steps:
    displayName: copying files form source directory
    inputs:
      contents: '**'
+     SourceFolder: $(Agent.BuildDirectory)
      CleanTargetFolder: true
      TargetFolder: $(build.artifactstagingdirectory)
      OverWrite: true
