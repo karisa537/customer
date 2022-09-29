@@ -73,3 +73,9 @@ steps:
      script: |
       minikube start --driver=docker
       minikube status
+ - task: Bash@3
+   displayName: Apply deployments
+   inputs:
+     targetType: inline
+     script: |
+      kubectl apply -f .
