@@ -28,8 +28,7 @@ steps:
  - task: CopyFiles@2
    displayName: copying files form source directory
    inputs:
-     contents: '**'
-     SourceFolder: $(Agent.BuildDirectory)
+     contents: 'target/*.jar'
      CleanTargetFolder: true
      TargetFolder: $(build.artifactstagingdirectory)
      OverWrite: true
