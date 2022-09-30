@@ -74,9 +74,15 @@ steps:
       minikube start --driver=docker
       minikube status
  - task: Bash@3
-   displayName: Apply deployments
+   displayName: CAT
    inputs:
-     targetType: inline
-     script: |
-      kubectl apply -f .
-      minikube dashboard
+    targetType: 'inline'
+    script: |
+      cat $(Build.SourcesDirectory)/ocp/*
+#  - task: Bash@3
+#    displayName: Apply deployments
+#    inputs:
+#      targetType: inline
+#      script: |
+#       kubectl apply -f .
+#       minikube dashboard
