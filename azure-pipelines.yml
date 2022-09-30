@@ -94,4 +94,4 @@ stages:
             targetType: inline
             script: |
               kubectl delete -f .
-              kubectl apply -f $(Build.SourcesDirectory)/ocp
+              kubectl apply -f $(Build.SourcesDirectory)/ocp/*.yml
