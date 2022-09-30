@@ -43,34 +43,30 @@ stages:
               retryCount: '5'
               preserveTimestamp: true
               delayBetweenRetries: true
-      - job: BuildImage
-        displayName: Build image with tag $(image_tag)
-        dependsOn: MavenBuild
-        steps:
-           - task: Docker@2
-             displayName: Docker login
-             inputs:
-              command: login
-              containerRegistry: 'dockerRegistry'
-           - task: Docker@2
-             inputs:
-              command: build
-              repository: jkalume/kari-git-images
-              Dockerfile: 'Dockerfile'
-              tags: $(image_tag)
-    
-           - task: Bash@3
-             displayName: List existing images
-             inputs:
-               targetType: inline
-               script: |
-                docker image ls
-           - task: Bash@3
-             displayName: Pushing image $(image_tag) to registry
-             inputs:
-               targetType: inline
-               script: |
-                docker push jkalume/kari-git-images:$(image_tag)
+
+         - task: Docker@2
+           displayName: Docker login
+           inputs:
+            command: login
+            containerRegistry: 'dockerRegistry'
+         - task: Docker@2
+           inputs:
+            command: build
+            repository: jkalume/kari-git-images
+            Dockerfile: 'Dockerfile'
+            tags: $(image_tag)
+
+         - task: Bash@3
+           displayName: List existing images
+           inputs:
+            targetType: inline
+            script: docker image ls
+         - task: Bash@3
+           displayName: Pushing image $(image_tag) to registry
+           inputs:
+            targetType: inline
+            script: docker push jkalume/kari-git-images:$(image_tag)
+  
   - stage: Deployment
     dependsOn: Build
     displayName: Deplyoying the image to Dev Environment
