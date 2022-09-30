@@ -60,12 +60,14 @@ stages:
            displayName: List existing images
            inputs:
             targetType: inline
-            script: docker image ls
+            script: |
+             docker image ls
          - task: Bash@3
            displayName: Pushing image $(image_tag) to registry
            inputs:
             targetType: inline
-            script: docker push jkalume/kari-git-images:$(image_tag)
+            script: |
+             docker push jkalume/kari-git-images:$(image_tag)
   
   - stage: Deployment
     dependsOn: Build
@@ -78,7 +80,7 @@ stages:
            inputs:
              targetType: inline
              script: |
-              minkube start --driver=docker
+              minikube start --driver=docker
          - task: Bash@3
            displayName: View the *.yml files under the deployment folder
            inputs:
