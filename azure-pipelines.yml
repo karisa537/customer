@@ -79,10 +79,10 @@ steps:
     targetType: 'inline'
     script: |
       cat $(Build.SourcesDirectory)/ocp/*
-#  - task: Bash@3
-#    displayName: Apply deployments
-#    inputs:
-#      targetType: inline
-#      script: |
-#       kubectl apply -f .
-#       minikube dashboard
+ - task: Bash@3
+   displayName: Apply deployments
+   inputs:
+     targetType: inline
+     script: |
+      kubectl delete -f .
+      kubectl apply -f $(Build.SourcesDirectory)/ocp
