@@ -22,7 +22,7 @@ spec:
               value: mysql
             - name: DB_NAME  # Setting Database name
               value: fleetdb
-            - name: DB_USERNAME  # Setting Database username
+            - name: MYSQL_ROOT_USERNAME  # Setting Database username
               value: root
             - name: MYSQL_ROOT_PASSWORD # Setting Database password
               value: password
