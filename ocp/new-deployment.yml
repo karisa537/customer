@@ -24,8 +24,8 @@ spec:
               value: fleetdb
             - name: DB_USERNAME  # Setting Database username
               value: root
-            - name: DB_PASSWORD # Setting Database password
-              value: root
+            - name: MYSQL_ROOT_PASSWORD # Setting Database password
+              value: password
 # This seperator --- below is MANDATORY!!!
 ---
 apiVersion: v1
