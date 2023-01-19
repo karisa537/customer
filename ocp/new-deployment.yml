@@ -20,11 +20,11 @@ spec:
           env:   # Setting Environmental Variables
             - name: DB_HOST   # Setting Database host address
               value: 10.98.125.108
-              port: 3306
+              #port: 3306
             - name: DB_NAME  # Setting Database name
               value: ken20970_Accounts
             - name: MYSQL_ROOT_USERNAME  # Setting Database username
-             # value: root
+              value: root
             - name: MYSQL_ROOT_PASSWORD # Setting Database password
               value: password
 # This seperator --- below is MANDATORY!!!
