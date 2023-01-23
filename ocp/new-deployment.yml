@@ -25,8 +25,8 @@ spec:
               value: 'ken20970_Accounts'
             - name: MYSQL_ROOT_USERNAME  # Setting Database username
               value: root
-            - name: MYSQL_ROOT_PASSWORD # Setting Database password
-              value: password
+            # - name: MYSQL_ROOT_PASSWORD # Setting Database password
+            #   value: password
 # This seperator --- below is MANDATORY!!!
 ---
 apiVersion: v1
