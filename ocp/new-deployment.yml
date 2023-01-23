@@ -19,7 +19,7 @@ spec:
             - containerPort: 8080
           env:   # Setting Environmental Variables
             - name: DB_HOST   # Setting Database host address
-              value: '172.17.0.1'
+              value: 10.98.125.108
               #port: 3306
             - name: DB_NAME  # Setting Database name
               value: 'ken20970_Accounts'
