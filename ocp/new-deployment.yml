@@ -17,16 +17,27 @@ spec:
           image: jkalume/kari-git-images:20230123.1
           ports:
             - containerPort: 8080
-          env:   # Setting Environmental Variables
-            - name: DB_HOST   # Setting Database host address
-              value: 10.98.125.108
-              #port: 3306
-            - name: DB_NAME  # Setting Database name
-              value: 'ken20970_Accounts'
-            - name: MYSQL_ROOT_USERNAME  # Setting Database username
-              value: root
-            - name: MYSQL_ROOT_PASSWORD # Setting Database password
-              value: password
+          env:   # Setting Enviornmental Variables
+          - name: DB_HOST   # Setting Database host address from configMap
+            valueFrom: 
+              configMapKeyRef:
+                name: db-conf  # name of configMap
+                key: host
+          - name: DB_NAME  # Setting Database name from configMap
+            valueFrom:
+              configMapKeyRef:
+                name: db-conf 
+                key: name
+          - name: DB_USERNAME  # Setting Database username from Secret
+            valueFrom:
+              secretKeyRef:
+                name: db-credentials # Secret Name
+                key: username
+          - name: DB_PASSWORD # Setting Database password from Secret
+            valueFrom:
+              secretKeyRef:
+                name: db-credentials
+                key: password     
 # This seperator --- below is MANDATORY!!!
 ---
 apiVersion: v1
