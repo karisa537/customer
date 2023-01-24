@@ -51,4 +51,4 @@ spec:
       targetPort: 8080  # Port exposed to the outside
   selector:
     app: spring-boot-k8s
-  type: LoadBalancer
+  type: ClusterIp
