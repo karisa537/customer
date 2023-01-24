@@ -18,16 +18,20 @@ spec:
           ports:
             - containerPort: 8080
           env:   # Setting Enviornmental Variables
-          - name: DB_HOST   # Setting Database host address from configMap
-            valueFrom: 
-              configMapKeyRef:
-                name: db-conf  # name of configMap
-                key: host
-          - name: DB_NAME  # Setting Database name from configMap
-            valueFrom:
-              configMapKeyRef:
-                name: db-conf 
-                key: name
+          # - name: DB_HOST   # Setting Database host address from configMap
+          #   valueFrom: 
+          #     configMapKeyRef:
+          #       name: db-conf  # name of configMap
+          #       key: host
+          # - name: DB_NAME  # Setting Database name from configMap
+          #   valueFrom:
+          #     configMapKeyRef:
+          #       name: db-conf 
+          #       key: name
+          - name: DB_HOST
+            value: mysql
+          - name: DB_NAME
+            value: karisaTestDB
           - name: DB_USERNAME  # Setting Database username from Secret
             valueFrom:
               secretKeyRef:
