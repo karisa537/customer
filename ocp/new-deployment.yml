@@ -46,18 +46,18 @@ spec:
           - /bin/sh
           - -c
           - touch /tmp/healthy; sleep 30; rm -rf /tmp/healthy; sleep 600
-          livenessProbe:
-            exec:
-              command:
-              - cat
-              - /tmp/healthy
-            initialDelaySeconds: 3
-            periodSeconds: 5  
-          readinessProbe:
-            tcpSocket:
-              port: 8080
-            initialDelaySeconds: 5
-            periodSeconds: 10
+          # livenessProbe:
+          #   exec:
+          #     command:
+          #     - cat
+          #     - /tmp/healthy
+          #   initialDelaySeconds: 3
+          #   periodSeconds: 5  
+          # readinessProbe:
+          #   tcpSocket:
+          #     port: 8080
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 10
           # startupProbe:
           #   httpGet:
           #     path: /healthz
