@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: spring-boot-k8s
-          image: jkalume/kari-git-images:20230123.2
+          image: jkalume/kari-git-images:20230130.1
           ports:
             - containerPort: 8080
           env:   # Setting Enviornmental Variables
