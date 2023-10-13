@@ -57,10 +57,10 @@ pipeline {
                     git config user.email "nyundobaya1@gmail.com"
                     git config user.name "karisa537"
                     BUILD_NUMBER=${BUILD_NUMBER}
-                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" ocp/*.yml
-                    git add ocp/*.yml
+                    sed -i "s/replaceImageTag/${DOCKER_IMAGE}/g" ocp/new-deployment.yml
+                    git add ocp/new-deployment.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
-                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:test
                 '''
             }
         }
