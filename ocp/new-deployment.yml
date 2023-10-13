@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: spring-boot-k8s
-          image: replaceImageTag
+          image: jkalume/jenkins-cicd:replaceImageTag
           ports:
             - containerPort: 8080
           env:
