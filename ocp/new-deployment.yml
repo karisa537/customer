@@ -17,6 +17,13 @@ spec:
           image: jkalume/jenkins-cicd:10
           ports:
             - containerPort: 8080
+          resources:
+            limits:
+              cpu: 100m
+              memory: 1024Mi
+            requests:
+              cpu: 80m
+              memory: 512Mi
           env:
           - name: DB_HOST
             value: mysql
