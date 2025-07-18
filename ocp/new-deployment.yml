@@ -7,11 +7,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: spring-boot-k8s
+      app: spring-boot-k8s  # ✅ CRITICAL: Must match Pod template labels
   template:
     metadata:
       labels:
-        app: spring-boot-k8s
+        app: spring-boot-k8s  # This label must match selector above
     spec:
       containers:
       - name: spring-boot-k8s
@@ -28,9 +28,6 @@ spec:
     canary:
       canaryService: spring-boot-k8s-canary-service
       stableService: spring-boot-k8s-svc
-      # trafficRouting:
-      #   spring-boot-k8s:
-      #     stableIngress: spring-boot-k8s-ingress
       steps:
       - setWeight: 20
       - pause: {duration: 60s}
@@ -48,11 +45,12 @@ metadata:
 spec:
   ports:
     - protocol: "TCP"
-      port: 8080    # Port inside the cluster
-      targetPort: 8080  # Port exposed to the outside
+      port: 8080
+      targetPort: 80  # ✅ Fix: Target containerPort 80 (not 8080)
   selector:
     app: spring-boot-k8s
   type: ClusterIP
+
 ---
 apiVersion: v1
 kind: Service
@@ -61,8 +59,8 @@ metadata:
 spec:
   ports:
     - protocol: "TCP"
-      port: 8080    # Port inside the cluster
-      targetPort: 8080  # Port exposed to the outside
+      port: 8080
+      targetPort: 80  # ✅ Fix: Target containerPort 80 (not 8080)
   selector:
     app: spring-boot-k8s
   type: ClusterIP
