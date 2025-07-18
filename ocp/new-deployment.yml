@@ -27,7 +27,7 @@ spec:
   strategy:
     canary:
       canaryService: spring-boot-k8s-canary-service
-      stableService: spring-boot-k8s-stable-service
+      stableService: spring-boot-k8s-svc
       trafficRouting:
         spring-boot-k8s:
           stableIngress: spring-boot-k8s-ingress
@@ -39,3 +39,30 @@ spec:
       - setWeight: 100
       maxSurge: 1
       maxUnavailable: 0
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-k8s-canary-service
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 8080    # Port inside the cluster
+      targetPort: 8080  # Port exposed to the outside
+  selector:
+    app: spring-boot-k8s
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-k8s-svc
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 8080    # Port inside the cluster
+      targetPort: 8080  # Port exposed to the outside
+  selector:
+    app: spring-boot-k8s
+  type: ClusterIP
