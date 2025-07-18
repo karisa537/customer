@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: spring-boot-k8s
-        image: argoproj/rollouts-demo:green
+        image: nginx:stable-alpine3.21
         ports:
         - containerPort: 80
         readinessProbe:
