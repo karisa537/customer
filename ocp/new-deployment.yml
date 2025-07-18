@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: spring-boot-k8s
-        image: nginx:alpine
+        image: nginx:1.19
         ports:
         - containerPort: 80
         readinessProbe:
@@ -28,9 +28,9 @@ spec:
     canary:
       canaryService: spring-boot-k8s-canary-service
       stableService: spring-boot-k8s-svc
-      trafficRouting:
-        spring-boot-k8s:
-          stableIngress: spring-boot-k8s-ingress
+      # trafficRouting:
+      #   spring-boot-k8s:
+      #     stableIngress: spring-boot-k8s-ingress
       steps:
       - setWeight: 20
       - pause: {duration: 60s}
