@@ -1,68 +1,68 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Rollout
-# metadata:
-#   name: spring-boot-k8s
-#   namespace: demo
-# spec:
-#   replicas: 3
-#   selector:
-#     matchLabels:
-#       app: spring-boot-k8s
-#   template:
-#     metadata:
-#       labels:
-#         app: spring-boot-k8s
-#     spec:
-#       containers:
-#       - name: spring-boot-k8s
-#         image: nginx:1.19
-#         ports:
-#         - containerPort: 80
-#         readinessProbe:
-#           httpGet:
-#             path: /
-#             port: 80
-#           initialDelaySeconds: 5
-#           periodSeconds: 10
-#   strategy:
-#     canary:
-#       canaryService: spring-boot-k8s-canary-service
-#       stableService: spring-boot-k8s-svc
-#       trafficRouting:
-#         spring-boot-k8s:
-#           stableIngress: spring-boot-k8s-ingress
-#       steps:
-#       - setWeight: 20
-#       - pause: {duration: 60s}
-#       - setWeight: 50
-#       - pause: {duration: 60s}
-#       - setWeight: 100
-#       maxSurge: 1
-#       maxUnavailable: 0
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: spring-boot-k8s
+  namespace: demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: spring-boot-k8s
+  template:
+    metadata:
+      labels:
+        app: spring-boot-k8s
+    spec:
+      containers:
+      - name: spring-boot-k8s
+        image: nginx:1.19
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+  strategy:
+    canary:
+      canaryService: spring-boot-k8s-canary-service
+      stableService: spring-boot-k8s-svc
+      trafficRouting:
+        spring-boot-k8s:
+          stableIngress: spring-boot-k8s-ingress
+      steps:
+      - setWeight: 20
+      - pause: {duration: 60s}
+      - setWeight: 50
+      - pause: {duration: 60s}
+      - setWeight: 100
+      maxSurge: 1
+      maxUnavailable: 0
 
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: spring-boot-k8s-canary-service
-# spec:
-#   ports:
-#     - protocol: "TCP"
-#       port: 8080    # Port inside the cluster
-#       targetPort: 8080  # Port exposed to the outside
-#   selector:
-#     app: spring-boot-k8s
-#   type: ClusterIP
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: spring-boot-k8s-svc
-# spec:
-#   ports:
-#     - protocol: "TCP"
-#       port: 8080    # Port inside the cluster
-#       targetPort: 8080  # Port exposed to the outside
-#   selector:
-#     app: spring-boot-k8s
-#   type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-k8s-canary-service
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 8080    # Port inside the cluster
+      targetPort: 8080  # Port exposed to the outside
+  selector:
+    app: spring-boot-k8s
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-k8s-svc
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 8080    # Port inside the cluster
+      targetPort: 8080  # Port exposed to the outside
+  selector:
+    app: spring-boot-k8s
+  type: ClusterIP
